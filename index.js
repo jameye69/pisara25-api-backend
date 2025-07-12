@@ -9,6 +9,12 @@ const PORT = process.env.PORT || 3001;
 // Sallitaan pyynnöt vain sinun verkkosivultasi
 app.use(cors({ origin: 'https://pisara25.fi' }));
 
+// --- LISÄÄ TÄMÄ UUSI TESTIREITTI ---
+app.get('/', (req, res) => {
+  res.send('Backend-palvelin on elossa!');
+});
+// ------------------------------------
+
 // Määritellään reitti, josta dataa haetaan (esim. /api/data)
 app.get('/api/data', async (req, res) => {
   try {
