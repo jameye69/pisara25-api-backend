@@ -9,15 +9,20 @@ const PORT = process.env.PORT || 3001;
 // Sallitaan pyynnöt vain sinun verkkosivultasi
 app.use(cors({ origin: 'https://pisara25.fi' }));
 
-// --- LISÄÄ TÄMÄ UUSI TESTIREITTI ---
+// Muuta aiemmin lisäämämme testireitti tähän muotoon:
 app.get('/', (req, res) => {
-  res.send('Backend-palvelin on elossa!');
+  res.send('Pakotettu päivitys toimii! Versio 2.'); // Uusi, selkeä teksti
 });
-// ------------------------------------
+
+// Varmista, että vanha reittisi on edelleen tämän alapuolella
+app.get('/api/data', async (req, res) => {
+  // ...
+});
 
 // Määritellään reitti, josta dataa haetaan (esim. /api/data)
 app.get('/api/data', async (req, res) => {
   try {
+
     // Haetaan salaisuudet turvallisesti ympäristömuuttujista
     const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
     const API_KEY = process.env.GOOGLE_API_KEY;
